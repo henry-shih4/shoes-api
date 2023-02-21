@@ -11,14 +11,20 @@ const connectDatabase = require("../config/database");
 //importing routes
 const shoes = require("./routes/shoes");
 
-
 //connect to DB
 connectDatabase();
+
+//global error handling
+const errorMiddleware = require("../middlewares/errors");
+const ErrorHandler = require("./utils/errorHandler");
 
 //setup body parser
 app.use(express.json());
 
 app.use("/api/v1", shoes);
+
+//Middlewares to handle errors
+app.use(errorMiddleware);
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
