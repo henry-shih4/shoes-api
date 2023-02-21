@@ -1,9 +1,11 @@
 const mongoose = require("mongoose");
+const validator = require("validator");
 
 const shoeSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, "Please enter name of shoe"],
+    trim: true,
     maxlength: [100, "Shoe name cannot exceed 30 characters"],
   },
   description: {
@@ -14,51 +16,52 @@ const shoeSchema = new mongoose.Schema({
   color1: {
     color: {
       type: String,
-      required: [true, "Please enter a colorway for the shoe"],
+      required: [true, "Please enter colorway of shoe"],
       maxlength: [15, "Shoe color cannot exceed 15 characters"],
     },
     image: {
       type: String,
-      required: [true, "Please enter a path to the image for the shoe"],
-      maxlength: [20, "Shoe image path cannot exceed 15 characters"],
+      required: [true, "Please enter path to image of shoe"],
+      maxlength: [20, "Shoe description cannot exceed 20 characters"],
     },
   },
   color2: {
     color: {
       type: String,
-      required: [true, "Please enter a colorway for the shoe"],
+      required: [true, "Please enter colorway of shoe"],
       maxlength: [15, "Shoe color cannot exceed 15 characters"],
     },
     image: {
       type: String,
-      required: [true, "Please enter a path to the image for the shoe"],
-      maxlength: [20, "Shoe image path cannot exceed 15 characters"],
+      required: [true, "Please enter path to image of shoe"],
+      maxlength: [20, "Shoe description cannot exceed 20 characters"],
     },
   },
   color3: {
     color: {
       type: String,
-      required: [true, "Please enter a colorway for the shoe"],
+      required: [true, "Please enter colorway of shoe"],
       maxlength: [15, "Shoe color cannot exceed 15 characters"],
     },
     image: {
       type: String,
-      required: [true, "Please enter a path to the image for the shoe"],
-      maxlength: [20, "Shoe image path cannot exceed 15 characters"],
+      required: [true, "Please enter path to image of shoe"],
+      maxlength: [20, "Shoe description cannot exceed 20 characters"],
     },
   },
   color4: {
     color: {
       type: String,
-      required: [true, "Please enter a colorway for the shoe"],
+      required: [true, "Please enter colorway of shoe"],
       maxlength: [15, "Shoe color cannot exceed 15 characters"],
     },
     image: {
       type: String,
-      required: [true, "Please enter a path to the image for the shoe"],
-      maxlength: [20, "Shoe image path cannot exceed 15 characters"],
+      required: [true, "Please enter path to image of shoe"],
+      maxlength: [20, "Shoe description cannot exceed 20 characters"],
     },
   },
+
   price: {
     type: Number,
     required: [true, "Please enter a price for this shoe"],
