@@ -30,10 +30,10 @@ exports.newShoe = catchAsyncErrors(async (req, res, next) => {
     color3: { color: req.body.color3 },
     color4: { color: req.body.color4 },
     price: req.body.price,
-    discount: req.body.discount,
+    oldPrice: req.body.oldPrice,
   });
 
-  if (req.files) {
+  if (req.files && req.files.length > 1) {
     console.log(req.files);
     shoe.color1.image = req.files[0].path;
     shoe.color2.image = req.files[1].path;
@@ -67,10 +67,6 @@ exports.updateShoe = catchAsyncErrors(async (req, res, next) => {
   let shoe = await Shoe.findById(shoeId);
   if (!shoe) {
     return next(new ErrorHandler("Shoe not found", 404));
-  }
-
-  if (req.file) {
-    shoe.color1.image = req.file.path;
   }
 
   shoe = await Shoe.findByIdAndUpdate(shoeId, req.body, {

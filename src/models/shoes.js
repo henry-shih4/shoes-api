@@ -7,7 +7,7 @@ const shoeSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    required:true,
+    required: true,
   },
 
   color1: {
@@ -42,11 +42,10 @@ const shoeSchema = new mongoose.Schema({
       type: String,
     },
   },
-
   price: {
     type: Number,
   },
-  discount: {
+  oldPrice: {
     type: Number,
   },
 });
