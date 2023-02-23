@@ -11,8 +11,6 @@ const helmet = require("helmet");
 const mongoSanitize = require("express-mongo-sanitize");
 const xssClean = require("xss-clean");
 
-
-
 //import database
 const connectDatabase = require("../config/database");
 
@@ -25,6 +23,10 @@ connectDatabase();
 
 //security headers
 app.use(helmet());
+helmet({
+  crossOriginResourcePolicy: false,
+});
+
 //sanitize data
 app.use(mongoSanitize());
 
@@ -56,7 +58,6 @@ app.use("/uploads", express.static("uploads"));
 
 app.use("/api/v1", shoes);
 app.use("/api/v1", auth);
-
 
 //Handle unhandled routes *make sure under app.use
 app.all("*", (req, res, next) => {
