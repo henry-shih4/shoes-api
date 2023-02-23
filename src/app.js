@@ -26,6 +26,7 @@ app.use(helmet());
 helmet({
   crossOriginResourcePolicy: false,
 });
+app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 
 //sanitize data
 app.use(mongoSanitize());
