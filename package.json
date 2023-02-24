@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "dev": "nodemon src/app.js",
-    "start": " node src/app.js",
+    "start": "node src/app.js",
+    "build": "build src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Henry Shih",
