@@ -23,9 +23,6 @@ connectDatabase();
 
 //security headers
 app.use(helmet());
-helmet({
-  crossOriginResourcePolicy: false,
-});
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 
 //sanitize data
@@ -69,6 +66,6 @@ app.all("*", (req, res, next) => {
 app.use(errorMiddleware);
 
 const PORT = process.env.PORT;
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Server started on port ${PORT} in ${process.env.NODE_ENV} mode`);
 });
