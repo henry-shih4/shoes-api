@@ -57,8 +57,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/uploads", express.static("uploads"));
 
-app.use("/.netlify/functions/api/v1", shoes);
-app.use("/.netlify/functions/api/v1", auth);
+app.use("/api/v1", shoes);
+app.use("/api/v1", auth);
 
 //Handle unhandled routes *make sure under app.use
 app.all("*", (req, res, next) => {
