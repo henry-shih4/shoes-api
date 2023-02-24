@@ -13,9 +13,9 @@ var fs = require("fs");
 
 // Creating object of key and certificate
 // for SSL
-const options = {
-  key: fs.readFileSync("server.key"),
-  cert: fs.readFileSync("server.cert"),
+var options = {
+  key: fs.readFileSync("test/fixtures/keys/agent2-key.pem"),
+  cert: fs.readFileSync("test/fixtures/keys/agent2-cert.cert"),
 };
 
 //import database
@@ -84,4 +84,6 @@ const PORT = process.env.PORT;
 // });
 
 http.createServer(app).listen(80);
-https.createServer(options, app).listen(443);
+https.createServer(options, app).listen(PORT, () => {
+  console.log(`server running on PORT ${PORT}`);
+});
