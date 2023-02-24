@@ -7,6 +7,16 @@ const rateLimit = require("express-rate-limit");
 const helmet = require("helmet");
 const mongoSanitize = require("express-mongo-sanitize");
 const xssClean = require("xss-clean");
+var https = require("https");
+var http = require("http");
+var fs = require("fs");
+
+// Creating object of key and certificate
+// for SSL
+const options = {
+  key: fs.readFileSync("server.key"),
+  cert: fs.readFileSync("server.cert"),
+};
 
 //import database
 const connectDatabase = require("../config/database");
@@ -50,7 +60,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/uploads", express.static("uploads"));
 
-
 //importing routes
 const shoes = require("./routes/shoes");
 const auth = require("./routes/auth");
@@ -66,6 +75,13 @@ app.all("*", (req, res, next) => {
 app.use(errorMiddleware);
 
 const PORT = process.env.PORT;
-const server = app.listen(PORT, () => {
-  console.log(`Server started on port ${PORT} in ${process.env.NODE_ENV} mode`);
-});
+// const server = app.listen(PORT, () => {
+//   console.log(`Server started on port ${PORT} in ${process.env.NODE_ENV} mode`);
+// });
+
+// https.createServer(options, app).listen(3000, function (req, res) {
+//   console.log("Server started at port 3000");
+// });
+
+http.createServer(app).listen(80);
+https.createServer(options, app).listen(443);
