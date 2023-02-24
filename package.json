@@ -2,7 +2,7 @@
   "name": "shoes_api",
   "version": "1.0.0",
   "description": "stores shoe product information",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
     "dev": "nodemon src/app.js",
     "start": "SET NODE_ENV=production&&node src/app.js",

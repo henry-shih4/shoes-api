@@ -1,9 +1,6 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-//config
-const dotenv = require("dotenv");
-dotenv.config({ path: "./config/.env" });
 const upload = require("../middlewares/upload");
 const cors = require("cors");
 const rateLimit = require("express-rate-limit");
@@ -14,9 +11,13 @@ const xssClean = require("xss-clean");
 //import database
 const connectDatabase = require("../config/database");
 
-//importing routes
-const shoes = require("./routes/shoes");
-const auth = require("./routes/auth");
+//global error handling
+const errorMiddleware = require("../middlewares/errors");
+const ErrorHandler = require("./utils/errorHandler");
+
+//config
+const dotenv = require("dotenv");
+dotenv.config({ path: "./config/.env" });
 
 //connect to DB
 connectDatabase();
@@ -41,19 +42,18 @@ app.use(limiter);
 //setting up cors - access from other domains
 app.use(cors());
 
-//global error handling
-const errorMiddleware = require("../middlewares/errors");
-const ErrorHandler = require("./utils/errorHandler");
-
 //setup body parser
 app.use(upload.array("images"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
 app.use("/uploads", express.static("uploads"));
 
+
+//importing routes
+const shoes = require("./routes/shoes");
+const auth = require("./routes/auth");
 app.use("/api/v1", shoes);
 app.use("/api/v1", auth);
 
