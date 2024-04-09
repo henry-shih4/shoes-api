@@ -17,7 +17,7 @@ router
   .route("/shoes/new", upload.array("images"))
   .post(isAuthenticatedUser, newShoe);
 
-router.route("/shoes").get(isAuthenticatedUser, getShoes);
+router.route("/shoes").get(getShoes);
 router.route("/shoes/:id").get(getSingleShoe);
 router
   .route("/shoes/:id")
