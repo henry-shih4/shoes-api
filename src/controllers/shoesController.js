@@ -22,6 +22,7 @@ exports.getShoes = catchAsyncErrors(async (req, res, next) => {
 //create a new shoe => /api/v1/shoes/new
 
 exports.newShoe = catchAsyncErrors(async (req, res, next) => {
+  console.log(req)
   let shoe = new Shoe({
     name: req.body.name,
     description: req.body.description,
