@@ -40,11 +40,12 @@ const limiter = rateLimit({
 app.use(limiter);
 
 //setting up cors - access from other domains
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-  })
-);
+// app.use(
+//   cors({
+//     origin: "http://localhost:3000",
+//   })
+// );
+app.use(cors())
 
 //setup body parser
 app.use(upload.array("images"));
