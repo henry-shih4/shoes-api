@@ -40,7 +40,11 @@ const limiter = rateLimit({
 app.use(limiter);
 
 //setting up cors - access from other domains
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+  })
+);
 
 //setup body parser
 app.use(upload.array("images"));
@@ -53,8 +57,10 @@ app.use("/uploads", express.static("uploads"));
 //importing routes
 const shoes = require("./routes/shoes");
 const auth = require("./routes/auth");
+const orders = require("./routes/orders");
 app.use("/api/v1", shoes);
 app.use("/api/v1", auth);
+app.use("/api/v1", orders);
 
 //Handle unhandled routes *make sure under app.use
 app.all("*", (req, res, next) => {
